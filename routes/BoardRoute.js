@@ -39,16 +39,16 @@ router.post('/b/', async (req, res) => {
 
 // [PUT] /b/:id
 router.put('/b/:id', async(req, res) => {
-  const { firstName, lastName, email, password } = req.params;
+  const { name, owner, status } = req.params;
   const id = req.params.id
   try{
-    await User.findById(id,(err,updatedUser)=>{
-      updatedUser.firstName=firstName;
-      updatedUser.lastName=lastName;
-      updatedUser.email=email;
-      updatedUser.password=password;
-      await updatedUser.save();
-      res.send("updated");
+    await User.findById(id,(err,updatedBoard)=>{
+      updatedBoard.name=name;
+      updatedBoard.owner=owner;
+      updatedBoard.status=status;
+      
+      await updatedBoard.save();
+      res.send("updated").json(updatedBoard);
     })
   }catch(err){
     res.status(400).json({ message: err.message });
