@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const BoardSchema = mongoose.Schema({
-  lastName: {
+  name: {
     type: String,
     required: true,
   },
